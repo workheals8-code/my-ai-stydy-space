@@ -4,3 +4,51 @@
 .toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;background:#342c2b;color:#fff;padding:10px 16px;border-radius:9px;font-size:11px;transition:.2s;z-index:20;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
 @media(max-width:900px){.sidebar{width:205px}.main{margin-left:205px;padding:0 25px}.stats{grid-template-columns:repeat(2,1fr)}.home-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.sidebar{transform:translateX(-100%);transition:.2s;width:245px;box-shadow:12px 0 30px #0001}.sidebar.open{transform:translateX(0)}.main{margin-left:0;padding:0 16px 20px}.topbar{height:62px;margin-bottom:25px}.mobile-menu{display:block;border:0;background:transparent;color:var(--wine);font-size:19px}.crumb{font-size:8px}.date-pill{display:none}.welcome-row{margin-top:0}.welcome-art{width:75px;height:70px;margin-right:0;font-size:25px}.welcome-row h1,.page-heading h1{font-size:34px}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:24px}.quick-grid{gap:7px}.quick{padding:10px;grid-template-columns:30px 1fr}.quick-icon{width:29px;height:29px}.panel{padding:16px}.inline-form{flex-wrap:wrap}.inline-form input:first-child{flex-basis:100%}.inline-form select,.inline-form input[type=date]{flex:1}.inline-form .primary{flex:1}.link-form input:first-child{flex-basis:100%}.canvas-wrap{height:390px}.board-foot{align-items:flex-start;gap:10px;flex-wrap:wrap}.form-row{grid-template-columns:1fr}.option-grid{grid-template-columns:1fr}.page-heading{margin-bottom:18px}}
+
+/* DUMPLING STUDY CLUB */
+#page-dumpling {
+  display: none;
+  padding: 24px;
+}
+
+#page-dumpling.active {
+  display: block;
+}
+
+#dumplingFriends {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  padding: 30px;
+}
+
+.dumpling {
+  width: 110px;
+  height: 100px;
+  border-radius: 48% 48% 42% 42%;
+  background: #fff0d9;
+  border: 3px solid #e9c9a8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: bold;
+  animation: dumplingBounce 1.8s infinite ease-in-out;
+}
+
+.dumpling:nth-child(2) {
+  background: #ffe2e2;
+  animation-delay: .4s;
+}
+
+@keyframes dumplingBounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+#dumplingTimer {
+  font-size: 42px;
+  font-weight: bold;
+  color: #8b2942;
+  margin: 15px 0;
+}
