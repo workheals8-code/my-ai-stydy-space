@@ -57,3 +57,50 @@ $('#undoBoard').onclick=()=>{const prev=history.pop();if(!prev){toast('Nothing t
 $('#clearBoard').onclick=()=>{if(confirm('Clear your whole whiteboard?')){snapshot();ctx.clearRect(0,0,canvas.width,canvas.height);saveBoard()}};
 $('#downloadBoard').onclick=()=>{const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='my-study-whiteboard.png';a.click()};
 const ro=new ResizeObserver(()=>resizeCanvas());ro.observe(canvas.parentElement);resizeCanvas();
+
+// DUMPLING STUDY TIMER
+let dumplingTime = 25 * 60;
+let dumplingInterval = null;
+
+const dumplingDisplay = document.getElementById("dumplingTimer");
+const startButton = document.getElementById("timerStart");
+const pauseButton = document.getElementById("timerPause");
+const resetButton = document.getElementById("timerReset");
+
+function updateDumplingTimer() {
+  const minutes = Math.floor(dumplingTime / 60);
+  const seconds = dumplingTime % 60;
+
+  dumplingDisplay.textContent =
+    String(minutes).padStart(2, "0") + ":" +
+    String(seconds).padStart(2, "0");
+}
+
+startButton.addEventListener("click", function () {
+  if (dumplingInterval) return;
+
+  dumplingInterval = setInterval(function () {
+    if (dumplingTime > 0) {
+      dumplingTime--;
+      updateDumplingTimer();
+    } else {
+      clearInterval(dumplingInterval);
+      dumplingInterval = null;
+      alert("Amazing! Mimi and Momo are proud of you! 🍡");
+    }
+  }, 1000);
+});
+
+pauseButton.addEventListener("click", function () {
+  clearInterval(dumplingInterval);
+  dumplingInterval = null;
+});
+
+resetButton.addEventListener("click", function () {
+  clearInterval(dumplingInterval);
+  dumplingInterval = null;
+  dumplingTime = 25 * 60;
+  updateDumplingTimer();
+});
+
+updateDumplingTimer();
