@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f1e9">
+<title>Study Space — Your personal learning desk</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><span class="brand-mark">S</span><div><b>study space</b><small>your learning desk</small></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <button class="nav active" data-page="home">⌂ <span>Overview</span></button>
+    <button class="nav" data-page="whiteboard">▧ <span>Whiteboard</span></button>
+    <button class="nav" data-page="library">▤ <span>My library</span></button>
+    <button class="nav" data-page="notes">✎ <span>My notes</span></button>
+    <button class="nav" data-page="quizzes">☷ <span>Quiz studio</span></button>
+    <button class="nav" data-page="tasks">☑ <span>My tasks</span></button>
+    <div class="sidebar-bottom"><div class="local-status"><i></i><span>Saved on this device</span></div><small>Your study space, your pace.</small></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+      <div class="crumb">MY WORKSPACE <span>/</span> <b id="pageCrumb">Overview</b></div>
+      <div class="top-actions"><span class="date-pill" id="today"></span><button class="avatar" title="Personal workspace">S</button></div>
+    </header>
+
+    <section class="page active" id="page-home">
+      <div class="welcome-row"><div><div class="eyebrow">YOUR PERSONAL STUDY SPACE</div><h1>Make today <em>count.</em></h1><p class="sub">A little progress every day adds up. What are we learning?</p></div><div class="welcome-art">✦<span>✎</span><b>✧</b></div></div>
+      <div class="stats">
+        <article class="stat"><span>OPEN TASKS</span><strong id="statTasks">0</strong><small>Things to work on</small></article>
+        <article class="stat"><span>MY NOTES</span><strong id="statNotes">0</strong><small>Ideas saved here</small></article>
+        <article class="stat"><span>QUIZZES MADE</span><strong id="statQuizzes">0</strong><small>Practice sessions</small></article>
+        <article class="stat"><span>LIBRARY ITEMS</span><strong id="statFiles">0</strong><small>Your study materials</small></article>
+      </div>
+      <div class="home-grid">
+        <article class="panel"><div class="panel-head"><div><div class="eyebrow">QUICK ACCESS</div><h2>Where shall we begin?</h2></div></div>
+          <div class="quick-grid">
+            <button class="quick" data-go="whiteboard"><span class="quick-icon pink">▧</span><b>Open whiteboard</b><small>Draw, write and work things out</small></button>
+            <button class="quick" data-go="library"><span class="quick-icon tan">＋</span><b>Upload materials</b><small>Keep your resources together</small></button>
+            <button class="quick" data-go="quizzes"><span class="quick-icon green">☷</span><b>Make a quiz</b><small>Create your own practice questions</small></button>
+            <button class="quick" data-go="notes"><span class="quick-icon lilac">✎</span><b>Write a note</b><small>Capture what you learn</small></button>
+          </div>
+        </article>
+        <article class="panel"><div class="panel-head"><div><div class="eyebrow">YOUR CHECKLIST</div><h2>Today's tasks</h2></div><button class="text-btn" data-go="tasks">View all →</button></div><div id="homeTasks" class="compact-list empty">No tasks yet. Add your first task.</div></article>
+      </div>
+      <div class="privacy-note">♡ Your workspace saves on this browser. It does not sync between devices yet. Avoid storing sensitive personal information here.</div>
+    </section>
+
+    <section class="page" id="page-tasks">
+      <div class="page-heading"><div><div class="eyebrow">STAY ON TRACK</div><h1>My <em>tasks.</em></h1><p class="sub">Break your study goals into manageable steps.</p></div></div>
+      <article class="panel">
+        <form id="taskForm" class="inline-form"><input id="taskInput" required maxlength="120" placeholder="What do you need to study?"><select id="taskSubject"><option>General</option><option>Biology</option><option>Chemistry</option><option>Physics</option><option>English</option><option>Other</option></select><input id="taskDate" type="date" aria-label="Due date"><button class="primary">＋ Add task</button></form>
+        <div class="panel-head section-head"><h2>Your checklist</h2><span class="muted" id="taskCount">0 tasks</span></div><div id="taskList" class="task-list empty">Your tasks will appear here.</div>
+      </article>
+    </section>
+
+    <section class="page" id="page-whiteboard">
+      <div class="page-heading"><div><div class="eyebrow">THINK IT THROUGH</div><h1>Study <em>whiteboard.</em></h1><p class="sub">Sketch diagrams, solve problems or map out an idea.</p></div></div>
+      <article class="panel board-panel">
+        <div class="board-toolbar"><div class="tool-group"><button class="tool active" id="penTool">✎ Pen</button><button class="tool" id="eraseTool">◌ Eraser</button></div><label class="color-label">Ink <input type="color" id="inkColor" value="#743447"></label><label class="color-label">Size <input type="range" id="inkSize" min="1" max="18" value="4"></label><button class="tool" id="undoBoard">↶ Undo</button><button class="tool danger-text" id="clearBoard">Clear</button></div>
+        <div class="canvas-wrap"><canvas id="board" aria-label="Drawing whiteboard"></canvas></div>
+        <div class="board-foot"><span>✦ Your board is saved automatically on this device.</span><button class="text-btn" id="downloadBoard">Download as image ↓</button></div>
+      </article>
+    </section>
+
+    <section class="page" id="page-library">
+      <div class="page-heading"><div><div class="eyebrow">ALL YOUR RESOURCES</div><h1>My <em>library.</em></h1><p class="sub">Collect the materials you want to study from.</p></div></div>
+      <article class="panel">
+        <label class="upload-zone" for="fileInput"><span class="upload-icon">↑</span><b>Choose study materials</b><span>PDF, PPT, DOC, images, text and more</span><small>Files stay in this browser on this device. Large files may exceed browser storage.</small><input id="fileInput" type="file" multiple></label>
+        <form id="linkForm" class="inline-form link-form"><input id="resourceUrl" type="url" placeholder="Paste a YouTube, Drive or website link"><input id="resourceName" maxlength="100" placeholder="Title (optional)"><button class="primary">＋ Save link</button></form>
+        <div class="panel-head section-head"><h2>My materials</h2><span class="muted" id="fileCount">0 items</span></div><div id="fileList" class="file-list empty">Your uploaded materials and saved links will appear here.</div>
+        <p class="hint">Note: this first version stores files locally; it does not yet read every file format or import Google Drive content. YouTube links are saved as references, not transcribed.</p>
+      </article>
+    </section>
+
+    <section class="page" id="page-notes">
+      <div class="page-heading"><div><div class="eyebrow">YOUR LEARNING JOURNAL</div><h1>My <em>notes.</em></h1><p class="sub">Write down explanations, reminders and discoveries.</p></div></div>
+      <article class="panel">
+        <form id="noteForm" class="note-editor"><input id="noteTitle" required maxlength="100" placeholder="Note title"><select id="noteSubject"><option>General</option><option>Biology</option><option>Chemistry</option><option>Physics</option><option>English</option><option>Other</option></select><textarea id="noteBody" rows="7" placeholder="Start writing your notes..." required></textarea><div class="editor-foot"><span class="muted">Saved in this browser</span><button class="primary">Save note</button></div></form>
+        <div class="panel-head section-head"><h2>Saved notes</h2><span class="muted" id="noteCount">0 notes</span></div><div id="noteList" class="note-list empty">Your saved notes will appear here.</div>
+      </article>
+    </section>
+
+    <section class="page" id="page-quizzes">
+      <div class="page-heading"><div><div class="eyebrow">PRACTISE & RECALL</div><h1>Quiz <em>studio.</em></h1><p class="sub">Build a small practice quiz and check your understanding.</p></div></div>
+      <article class="panel">
+        <form id="quizForm" class="quiz-editor">
+          <div class="form-row"><label>Quiz title<input id="quizTitle" required maxlength="100" placeholder="e.g. Cell biology revision"></label><label>Subject<select id="quizSubject"><option>General</option><option>Biology</option><option>Chemistry</option><option>Physics</option><option>English</option><option>Other</option></select></label></div>
+          <div class="question-box"><label>Question<input id="questionText" required placeholder="Write your question"></label><div class="option-grid"><input class="answer-option" placeholder="Option A" required><input class="answer-option" placeholder="Option B" required><input class="answer-option" placeholder="Option C" required><input class="answer-option" placeholder="Option D" required></div><label>Correct answer<select id="correctAnswer"><option value="0">Option A</option><option value="1">Option B</option><option value="2">Option C</option><option value="3">Option D</option></select></label><button type="button" class="secondary" id="addQuestion">＋ Add another question</button></div>
+          <div id="questionPreview" class="question-preview"></div><button class="primary">Save quiz</button>
+        </form>
+        <div class="panel-head section-head"><h2>My quizzes</h2><span class="muted" id="quizCount">0 quizzes</span></div><div id="quizList" class="quiz-list empty">Your quizzes will appear here.</div>
+        <div id="quizRunner" class="quiz-runner hidden"></div>
+      </article>
+    </section>
+
+    <footer>Made for curious minds <span>✦</span> Study Space · Personal edition</footer>
+  </main>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
